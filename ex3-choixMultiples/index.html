@@ -1,0 +1,53 @@
+	<form class="img-rounded" id="choixMultiples">
+		<div ng-show="step==1">
+		<h1>Sélectionnez vos produits</h1>
+		<div class="form-group">
+			<div class="inline-block">
+				<label>Produits disponibles : <select title="Double-cliquez pour ajouter" class="form-control"
+					ng-model="selectedDispoItems" ng-dblclick="selectItem()" ng-options="item.title for item in dispoItems"
+					size="10" multiple="multiple"></select>
+				</label>
+				<div>
+					<ng-pluralize count="includedItems.length"
+						when="{0:'Aucun produit à inclure',
+										1:'1 produit inclus',
+										'other':'{} produits inclus'}"></ng-pluralize>
+				</div>
+				</select>
+
+			</div>
+			<div class="inline-block">
+				<div title="Ajouter" class="btn btn-primary list-btn" ng-click="addToIncluded()" 
+				ng-disabled="selectedDispoItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span></div>
+				<div title="Ajouter tous" class="btn btn-primary list-btn" ng-click="addAllToIncluded()" 
+				ng-disabled="dispoItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></div>
+				<div title="Retirer" class="btn btn-primary list-btn" ng-click="removeFromIncluded()" 
+				ng-disabled="selectedIncludedItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></div> 
+				<div title="Retirer tous" class="btn btn-primary list-btn" ng-click="removeAllFromIncluded()" 
+				ng-disabled="includedItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-fast-backward"></div>
+			</div>
+			<div class="inline-block">
+				<label>Produits à inclure : <select title="Double-cliquez pour ajouter" class="form-control"
+					ng-model="selectedIncludedItems" ng-dblclick="deselectItem()"
+					ng-options="item.title for item in includedItems" size="10"
+					multiple="multiple"></select>
+				</label> </select>
+			</div>
+		</div>
+		<div><div class="btn btn-primary" style="width:98%;text-align: right" ng-click="step=2" ng-disabled="includedItems.length<1">
+			<span>Etape suivante    </span><span aria-hidden="true" class="glyphicon glyphicon-circle-arrow-right"></span>
+		</div></div>
+		</div>
+		<div ng-show="step==2">
+			<h1>Votre choix</h1>
+			<ul>
+				<li ng-repeat="item in includedItems">
+					<a href="{{item.url}}"><img ng-src="{{item.image}}" /></a>
+					<p>{{item.title}}</p>
+				</li>
+			</ul>
+			<div><div class="btn btn-primary" style="width:98%;text-align: right" ng-click="step=1">
+				<span aria-hidden="true" class="glyphicon glyphicon-circle-arrow-left"></span><span>     Retour au choix précédent</span>
+			</div></div>
+		</div>
+	</form>

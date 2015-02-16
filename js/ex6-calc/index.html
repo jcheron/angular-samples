@@ -1,0 +1,18 @@
+<div drag="{handle: '#title-calc'}" class="container" id="calc">
+	<div class="panel panel-primary">
+		<div id="title-calc" class="panel-heading">Ex 6 : Calculatrice 
+			<input id="btOn" type="button" data-ng-hide="gui.on" class="btn btn-info" value="On" data-ng-click="setOn()" title="Allumer la calculatrice">
+		</div>
+		<div id="calc-body" class="panel-body" data-ng-show="gui.on" data-ng-keypress="keypress($event);" tabindex="0" focus-me="true">
+		<div id="sc">
+			<label id="screen" data-ng-bind="gui.screen"></label><br>
+			<label id="result" data-ng-bind="gui.result"></label>
+		</div>
+			<br>
+			<btn data-ng-repeat="op in ops track by $index" value="{{op.value}}" css-class="{{op.cssClass}}" title="{{op.title}}" data-ng-click="add(op.value)"/>
+		</div><br><br><br>
+	</div>
+</div>
+<script>
+
+</script>

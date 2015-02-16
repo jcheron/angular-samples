@@ -1,0 +1,21 @@
+{
+  "name": "ang",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "none"
+  },
+  "browser": {
+    "angular-latest": "./vendors/angular.browserify.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "author": "jc",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.3.13"
+  }
+}

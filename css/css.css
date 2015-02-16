@@ -1,0 +1,71 @@
+@CHARSET "UTF-8";
+
+#choixMultiples a, #choixMultiples a:visited {
+	outline:none;
+	color:#389dc1;
+}
+
+#choixMultiples a:hover{
+	text-decoration:none;
+}
+
+/*-------------------------
+	The order form
+--------------------------*/
+
+#choixMultiples{
+	background-color: #61a1bc;
+	border-radius: 2px;
+	box-shadow: 0 1px 1px #ccc;
+	padding: 0px 10px 15px 30px;
+	margin: 50px auto;
+}
+
+#choixMultiples h1{
+	color:#fff;
+	font-size:30px;
+	font-family:'Century gothic', cursive;
+	font-weight: normal;
+	line-height:1;
+	text-shadow:0 3px 0 rgba(0,0,0,0.1);
+}
+
+#choixMultiples ul{
+	list-style: none;
+	width: 428px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#choixMultiples ul li{
+	border-bottom: 1px solid #ddd;
+	padding: 10px;
+	overflow: hidden;
+}
+
+#choixMultiples ul li img{
+	width:60px;
+	height:60px;
+	float:left;
+	border:none;
+}
+
+#choixMultiples ul li p{
+	margin-left: 75px;
+	font-weight: bold;
+	padding-top: 12px;
+	color:#6e7a7f;
+}
+
+#choixMultiples div.inline-block{
+	display: inline-block;
+	vertical-align: middle;
+}
+.list-btn{
+	width: 70px;
+	display: block!important;
+	margin: 12px 6px
+}
+#choixMultiples select{
+	min-width: 500px;
+}

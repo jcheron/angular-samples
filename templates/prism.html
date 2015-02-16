@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+	<div class="panel-heading" ng-bind-html="activeTabs['title']"></div>
+	<div class="panel-body" ng-bind-html="activeTabs['description']"></div>
+	<div class="panel-footer">
+		<div class="btn-group" role="group">
+			<a class="btn btn-success" href="{{activeTabs['href']}}">
+				<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+				Run Application
+			</a>
+			<a class="btn btn-default" href="#" ng-click="downloadAll(activeTabs['tabs'],activeTabs.code)">
+			<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+			Télécharger les fichiers
+			</a>
+		</div>
+	</div>
+</div>
+<prism-tabs data-ng-model="activeTabs['tabs']" id="tabs1"></prism-tabs>

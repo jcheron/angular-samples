@@ -1,0 +1,11 @@
+			<td>{{conversion.from.code}}</td>
+			<td>{{conversion.to.code}}</td>
+			<td class="text-center">{{conversion.rate}}</td>
+			<td class="text-center">{{conversion.amount()|number : 4}}</td>
+			<td class="text-center">{{conversion.date| date:'dd/MM/yy HH:mm:ss'}}</td>
+			<td class="text-center">{{conversion.delta|number : 4}}</td>
+			<td>
+				<img src="ex5-currency/img/loader.gif" data-ng-show="conversion.update">&nbsp;
+				<button class="btn btn-info btn-xs" data-ng-click="updateHisto(conversion)" title="Rafraîchir"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>&nbsp;
+				<button class="btn btn-danger btn-xs" data-ng-click="deleteHisto(conversion)" title="Supprimer"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+			</td>

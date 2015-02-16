@@ -1,0 +1,11 @@
+<div>
+	<div class="progress">
+		<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{value}}" aria-valuemin="{{min}}" aria-valuemax="{{max}}" style="min-width: 2em;width: {{value/max*100}}%">
+			{{value/max*100 |number : 0}}%
+		</div>
+	</div>
+	<div class="alert alert-dismissible alert-success" role="alert" data-ng-class="{'alert-danger': value ,'alert-warning':value>300 ,'alert-info': value>200,'alert-success': value>100}">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <strong>Prochaine séance de TD :</strong> création de directives... <br>Redirection dans {{(max-value)/10 | number : 0}} secondes
+	</div>
+</div>

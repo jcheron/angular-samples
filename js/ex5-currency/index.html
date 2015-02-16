@@ -1,0 +1,62 @@
+<div id="currency">
+<div class="panel panel-primary" data-ngCloak>
+	<div class="panel-heading">Ex 5 : Currency Application</div>
+		<div class="panel-body">
+			<form class="form-group form-inline" ng-keypress="$event.keyCode == 13 ? getResult() : null">
+				<input data-ng-model="what" type="text" class="form-control" size="5" focus-me="true">
+				<select data-ng-model="from" data-ng-options="v.code + ' - ' + v.name for (k, v) in currencies" class="form-control"></select>
+				<a href="#" data-ng-click="swap()">&#8596;</a>
+				<select data-ng-model="to" data-ng-options="v.code + ' - ' + v.name for (k, v) in currencies" class="form-control"></select>
+				<input type="button" value="Convertir" class="btn btn-primary" data-ng-click="getResult()">
+				<input data-ng-model="result" type="text" class="form-control" readonly="readonly" size="5">
+				<div class="checkbox"><label><input type="checkbox" data-ng-model="histo">&nbsp;Historique</label></div>
+			</form>
+			<div classchange class="alert alert-dismissible alert-info" role="alert" data-ng-show="message!==null" data-ng-class="{'alert-warning': nbRequest>=nbRequestMax/2,'alert-danger':nbRequest>=nbRequestMax}">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				Pour ne pas surcharger inutilement les servers de <b>rate-exchange.com</b>, le nombre de requêtes est limité à <b>{{nbRequestMax}}</b>.<br>
+				<b><data-ng-pluralize count="nbRequestMax-nbRequest"
+					when="{ 0 : 'Il ne vous reste plus aucune requête disponible.',
+							1 : 'Il ne vous reste plus qu\'une requête disponible',
+							'other': 'Il vous reste encore {} requêtes disponibles.'}"></b>
+				</data-ng-pluralize>
+				<br>{{error}}
+			<div data-ng-show="nbRequest>=nbRequestMax">Note : Vous pouvez lever provisoirement cette restriction en supprimant le cookie lié à cette application (Ce qui laissera le temps à rate-exchange de se remettre...).</div>
+			
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div data-ng-show="histoNotEmpty() && histo" class="panel panel-default">
+				<div class="panel-body">
+					<table class="table table-striped" id="lstHisto" style="table-layout:fixed;width: 100%">
+						<tr>
+							<th>De</th>
+							<th>En</th>
+							<th class="text-center">Tx</th>
+							<th class="text-center">Montant</th>
+							<th class="text-center">Date</th>
+							<th class="text-center">Delta</th>
+							<th></th>
+						</tr>
+						<tr histo-elem class="animate-repeat" data-ng-repeat="(id,conversion) in historique" data-ng-class="{'info':conversion.update,'danger': conversion.delta<0,'success':conversion.delta>0}">
+						</tr>
+						<tr>
+							<td colspan="7">
+								<form class="form-inline">
+									<div class="input-group">
+										<span class="input-group-addon">
+											<input type="checkbox" data-ng-model="autoRefresh" data-ng-change="startRefresh(autoRefresh)" title="Auto-refresh">
+										</span>
+										<input type="number" data-ng-model="interval" class="form-control" data-ng-change="updateFrequency()" data-ng-model-options="{debounce: 3000}">
+										<span class="input-group-btn">
+										<button class="btn btn-primary" data-ng-click="refresh()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+										</span>
+									</div>
+								</form>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

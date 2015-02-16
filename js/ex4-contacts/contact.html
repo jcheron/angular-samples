@@ -1,0 +1,27 @@
+<div id="contact">
+<div class="panel panel-primary">
+	<div class="panel-heading">Contacts</div>
+	<div class="panel-body">
+	<input type="text" placeholder="Filtrer..." data-ng-model="q" class="form-control">
+	<table class="table table-striped" id="lstContact">
+		<tr contact-elem class="animate-repeat" data-ng-repeat="contact in contacts |NotDeletedFilter |filter:q as results">
+		</tr>
+		<tr><td colspan="4">
+			<a id="add" href="" data-ng-click="toAdd()" class="btn btn-primary">Ajouter...</a>
+			<a id="add" href="" data-ng-show="results.length<contacts.length && !q" data-ng-click="cancelOne()" class="btn btn-danger">
+			<data-ng-pluralize count="contacts.length-results.length"
+                 when="{'one': 'Annuler la suppression.',
+                     'other': 'Annuler les suppressions ({}) .'}">
+		</data-ng-pluralize>
+			</a></td></tr>
+	</table>
+</div>
+	<frm-contact-elem></frm-contact-elem>
+		<div class="container"><data-ng-pluralize count="results.length"
+                 when="{'0': 'Aucun résultat.',
+                     'one': '1 contact trouvé.',
+                     'other': '{} contacts trouvés.'}">
+		</data-ng-pluralize>
+	</div>
+</div>
+</div>

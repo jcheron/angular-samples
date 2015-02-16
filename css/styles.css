@@ -1,0 +1,239 @@
+@CHARSET "UTF-8";
+body{
+	font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;!important
+	font-weight: 400;
+}
+.alert {
+    transition: 1s linear all;
+     opacity: 1;
+}
+.alert.ng-hide {
+     opacity: 0;
+}
+
+.alert.ng-show {
+     opacity: 1;
+}
+
+.ui-draggable-handle{
+	cursor: move;
+}
+
+.navbar{
+	margin-bottom: 5px;
+}
+
+.bs-docs-header {
+    box-sizing: border-box;
+    color: rgb(129, 181, 221);
+    height: 180px;
+    position: relative;
+    text-align: left;
+    text-shadow: rgba(0, 0, 0, 0.0980392) 0px 1px 0px;
+    width: 1901px;
+    perspective-origin: 950.5px 128px;
+    transform-origin: 950.5px 128px;
+    background-color: rgb(51,51,51);
+    border: 0px none rgb(205, 191, 227);
+    font: normal normal normal normal 24px/34.2857170104981px 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0px 0px 10px;
+    outline: rgb(205, 191, 227) none 0px;
+    padding: 30px 15px;
+}
+.bs-docs-header h1 {
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    height: 60px;
+    text-align: left;
+	text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.64);
+    width: 760px;
+    perspective-origin: 380px 30px;
+    transform-origin: 380px 30px;
+    border: 0px none rgb(255, 255, 255);
+    font: normal normal 500 normal 60px/60px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-variant: small-caps;
+    margin: 0px 380px 10px 0px;
+    outline: rgb(255, 255, 255) none 0px;
+}
+.bs-docs-header h1 span.red{
+	color: #AF0E19;
+}
+
+.bs-docs-header p{
+    color: rgb(164,164,164);
+    font-weight: 200;
+	font-size: 18px;
+	font-stretch: ultra-expanded;
+	text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.24);
+	font-variant: small-caps;
+}
+
+/*--------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------Services---------------------------------------------------
+---------------------------------------------------------------------------------------------------------------*/
+#services{
+	font:15px/1.3 'Century gothic', sans-serif;
+	color: #5e5b64;
+	text-align:center;
+}
+
+#services a, #services a:visited {
+	outline:none;
+	color:#389dc1;
+}
+
+#services a:hover{
+	text-decoration:none;
+}
+
+#services section, #services footer, #services header, #services aside, #services nav{
+	display: block;
+}
+
+/*-------------------------
+	The order form
+--------------------------*/
+
+#services{
+	background-color: #61a1bc;
+	border-radius: 2px;
+	box-shadow: 0 1px 1px #ccc;
+	width: 500px;
+	padding: 35px 60px;
+	margin: 0px auto;
+}
+
+#services h1{
+	color:#fff;
+	font-size:50px;
+	font-family:'Century gothic', cursive;
+	font-weight: normal;
+	line-height:1;
+	text-shadow:0 3px 0 rgba(0,0,0,0.1);
+}
+
+#services ul{
+	list-style:none;
+	color:#fff;
+	font-size:20px;
+	font-weight:bold;
+	text-align: left;
+	margin:20px 0 15px;
+	padding: 0px;
+}
+
+#services ul li{
+	padding:20px 30px;
+	background-color:#777;
+	margin-bottom:8px;
+	box-shadow:0 1px 1px rgba(0,0,0,0.1);
+	cursor:pointer;
+	border-radius:4px;
+}
+
+#services ul li span{
+	float:right;
+}
+
+#services ul li.active{
+	background-color:#8ec16d;
+}
+
+#services div.total{
+	border-top:1px solid rgba(255,255,255,0.5);
+	padding:15px 30px;
+	font-size:20px;
+	font-weight:bold;
+	text-align: left;
+	color:#fff;
+}
+
+#services div.total span{
+	float:right;
+}
+#services .alert{
+	text-align: left;
+}
+#services .alert p{
+	font-weight: bold;
+}
+/*--------------------------------------------------------------------------------------------------------------
+------------------------------------------------Fin Services---------------------------------------------------
+---------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------Calculatrice-----------------------------------------------
+---------------------------------------------------------------------------------------------------------------*/
+
+@font-face{ 
+	font-family: 'digital';
+	src: url('font/DIGITALDREAMFAT-webfont.eot');
+	src: url('font/DIGITALDREAMFAT-webfont.eot?iefix') format('eot'),
+	     url('font/DIGITALDREAMFAT-webfont.woff') format('woff'),
+	     url('font/DIGITALDREAMFAT-webfont.ttf') format('truetype'),
+	     url('font/DIGITALDREAMFAT-webfont.svg#webfont') format('svg');
+}
+#calc .calcBtn{
+	float:left;
+	width: 50px;
+	height: 50px;
+	margin: 1px;
+	font-weight: normal;
+}
+#calc .rowspan{
+	height: 101px;
+	top: -51px;
+	position: relative;
+}
+#calc .colspan{
+	width: 102px;
+}
+.clear{
+	clear: both;
+}
+#calc .space{
+	width: 10px;
+	float: left;
+	display: inline-block;
+}
+#calc{
+	width: 336px;
+}
+#calc:after, #calc:before{
+	content:none;
+}
+#note .panel-body{
+	content: none;
+	height: 426px;
+	outline: none;
+}
+#calc .panel-body:after, #calc .panel-body:before{
+	content:none;
+}
+#screen, #result{
+	font-family: 'digital', Arial, sans-serif;
+}
+#screen{
+	font-size: 9px;
+}
+
+#sc{
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    color: rgb(85, 85, 85);
+    cursor: not-allowed;
+    display: block;
+    width: 274px;
+    perspective-origin: 137px 17px;
+    transform-origin: 137px 17px;
+    background: rgb(238, 238, 238) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 4px 4px 4px 4px;
+    font: normal normal normal normal 14px/20px digital, Arial, sans-serif;
+    outline: rgb(85, 85, 85) none 0px;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+#calc-body:focus { outline: none; }
+/*--------------------------------------------------------------------------------------------------------------
+------------------------------------------------Fin Calculatrice-----------------------------------------------
+---------------------------------------------------------------------------------------------------------------*/

@@ -1,0 +1,10 @@
+	<fieldset data-ng-show="edit" class="container form-group form-inline">
+		<legend>{{operation}}</legend>
+		<form name="frmContact" data-ng-submit="frmContact.$valid && update()" novalidate>
+			<input class="form-control" type="text" data-ng-model="tmpContact.nom" placeholder="Entrez un nom..." required>
+			<input class="form-control" type="text" data-ng-model="tmpContact.prenom" placeholder="Prénom...">
+			<input class="form-control" type="email" data-ng-model="tmpContact.email" placeholder="Adresse email..." required>
+			<input type="submit" value="Valider" class="btn btn-primary">
+			<input type="button" value="Annuler" data-ng-click="edit=false" class="btn btn-primary">
+	</form>
+	</fieldset>

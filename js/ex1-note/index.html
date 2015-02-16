@@ -1,0 +1,22 @@
+<div id="note">
+<div class="panel panel-primary">
+	<div class="panel-heading">Ex 1 : Note Application</div>
+	<div class="panel-body">
+		<div class="form-group">
+		<p><label for="message">Note :</label>
+			<textarea data-ng-change="updateInfo()" name="message" id="message" data-ng-model="message" cols="40" rows="5" class="form-control" maxlength="100"></textarea>
+		</p>
+		<p>
+		<button data-ng_click="save()" class="btn btn-primary">Enregistrer</button>
+		<button data-ng-click="clear()" class="btn btn-primary">Effacer</button>
+		</p>
+		
+		<div class="alert alert-info alert-dismissible" role="alert">Nombre de caractères restant : <span data-ng-bind="count()"></span></div>
+		<div ng-class="{'alert-info':message=='','alert-warning':message!='' && info!='Note sauvegardée','alert-danger':count()<10 && info!='Note sauvegardée','alert-success':info=='Note sauvegardée'}" class="alert alert-dismissible" role="alert" data-ng-show="info">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="info=''"><span aria-hidden="true">&times;</span></button>
+			<span>{{info}}</span>
+		</div>		
+		</div>
+	</div>
+</div>
+</div>
