@@ -5,9 +5,18 @@ require("./ex4-contacts/app/app");
 require("./ex5-currency/app/app");
 require("./ex6-calc/app");
 require("./prismApp/app");
-
 require("./prismApp/app");
-angular.module("mainApp", ["ngAnimate","ngRoute",require("./ex1-note/app"),"ServicesApp","ListesApp","ContactApp","currencyApp","calcApp","PrismApp"])
+angular.module("mainApp", ["ngAnimate","ngRoute",
+                           require("./ex1-note/app"),
+                           "ServicesApp",
+                           "ListesApp",
+                           "ContactApp",
+                           "currencyApp",
+                           "calcApp",
+                           "PrismApp",
+                           require("./ex7-button-dir/app/app"),
+                           require("./ex8-alert-dir/app/app"),
+                           require("./ex9-pb-dir/app/app")])
 .factory("run", function() {
 	var value;
     var valueService = {};
@@ -28,7 +37,7 @@ angular.module("mainApp").directive("progressBar", ["$interval","$parse","$timeo
 angular.module("mainApp").filter('truncate',require("./filters/truncate"));
 
 angular.module("mainApp").controller("RouteController",["$scope","$location","$window","run",require("./controllers/mainController")]);
-},{"./controllers/mainController":2,"./directives/drag":3,"./directives/forwardLink":5,"./directives/modal":6,"./directives/progressBar":7,"./ex1-note/app":8,"./ex2-services/app":10,"./ex3-choixMultiples/app":11,"./ex4-contacts/app/app":12,"./ex5-currency/app/app":17,"./ex6-calc/app":21,"./filters/truncate":25,"./prismApp/app":26,"./routes":32}],2:[function(require,module,exports){
+},{"./controllers/mainController":2,"./directives/drag":3,"./directives/forwardLink":5,"./directives/modal":6,"./directives/progressBar":7,"./ex1-note/app":8,"./ex2-services/app":10,"./ex3-choixMultiples/app":11,"./ex4-contacts/app/app":12,"./ex5-currency/app/app":17,"./ex6-calc/app":21,"./ex7-button-dir/app/app":25,"./ex8-alert-dir/app/app":28,"./ex9-pb-dir/app/app":29,"./filters/truncate":31,"./prismApp/app":32,"./routes":38}],2:[function(require,module,exports){
 var mainController=function($scope,$location,$window,run){
 	$scope.vousEtesIci=function(){
 		return $location.path().replace("/","");
@@ -843,6 +852,236 @@ var calcService=function($cookies) {
 };
 module.exports=calcService;
 },{}],25:[function(require,module,exports){
+var buttonApp=angular.module("ButtonApp", []);
+angular.module("ButtonApp").controller("ButtonController", ["$scope","buttonConstants",function($scope,buttonConstants) {
+	$scope.styles=buttonConstants.styles;
+	$scope.style=$scope.styles[0];
+	$scope.glyphs=buttonConstants.glyphs;
+	$scope.glyph=$scope.glyphs[1];
+	
+	$scope.value="Okay";
+	$scope.active=false;
+	$scope.disabled=false;
+	$scope.buttons=new Array();
+	$scope.count=1;
+	
+	$scope.create=function(){
+		for(var i=0;i<$scope.count;i++){
+			var button={};
+			button.style=$scope.style;
+			button.value=$scope.value;
+			button.glyph=$scope.glyph;
+			button.active=$scope.active;
+			button.disabled=$scope.disabled;
+			$scope.buttons.push(button);
+		}
+	}
+}]);
+
+angular.module("ButtonApp").constant('buttonConstants', {
+	styles: ['default','primary','success','info','warning','danger','link'],
+	glyphs:["","glyphicon-asterisk","glyphicon-plus","glyphicon-euro","glyphicon-eur","glyphicon-minus","glyphicon-cloud","glyphicon-envelope","glyphicon-pencil","glyphicon-glass","glyphicon-music","glyphicon-search","glyphicon-heart","glyphicon-star","glyphicon-star-empty","glyphicon-user","glyphicon-film","glyphicon-th-large","glyphicon-th","glyphicon-th-list","glyphicon-ok","glyphicon-remove","glyphicon-zoom-in","glyphicon-zoom-out","glyphicon-off","glyphicon-signal","glyphicon-cog","glyphicon-trash","glyphicon-home","glyphicon-file","glyphicon-time","glyphicon-road","glyphicon-download-alt","glyphicon-download","glyphicon-upload","glyphicon-inbox","glyphicon-play-circle","glyphicon-repeat","glyphicon-refresh","glyphicon-list-alt","glyphicon-lock","glyphicon-flag","glyphicon-headphones","glyphicon-volume-off","glyphicon-volume-down","glyphicon-volume-up","glyphicon-qrcode","glyphicon-barcode","glyphicon-tag","glyphicon-tags","glyphicon-book","glyphicon-bookmark","glyphicon-print","glyphicon-camera","glyphicon-font","glyphicon-bold","glyphicon-italic","glyphicon-text-height","glyphicon-text-width","glyphicon-align-left","glyphicon-align-center","glyphicon-align-right","glyphicon-align-justify","glyphicon-list","glyphicon-indent-left","glyphicon-indent-right","glyphicon-facetime-video","glyphicon-picture","glyphicon-map-marker","glyphicon-adjust","glyphicon-tint","glyphicon-edit","glyphicon-share","glyphicon-check","glyphicon-move","glyphicon-step-backward","glyphicon-fast-backward","glyphicon-backward","glyphicon-play","glyphicon-pause","glyphicon-stop","glyphicon-forward","glyphicon-fast-forward","glyphicon-step-forward","glyphicon-eject","glyphicon-chevron-left","glyphicon-chevron-right","glyphicon-plus-sign","glyphicon-minus-sign","glyphicon-remove-sign","glyphicon-ok-sign","glyphicon-question-sign","glyphicon-info-sign","glyphicon-screenshot","glyphicon-remove-circle","glyphicon-ok-circle","glyphicon-ban-circle","glyphicon-arrow-left","glyphicon-arrow-right","glyphicon-arrow-up","glyphicon-arrow-down","glyphicon-share-alt","glyphicon-resize-full","glyphicon-resize-small","glyphicon-exclamation-sign","glyphicon-gift","glyphicon-leaf","glyphicon-fire","glyphicon-eye-open","glyphicon-eye-close","glyphicon-warning-sign","glyphicon-plane","glyphicon-calendar","glyphicon-random","glyphicon-comment","glyphicon-magnet","glyphicon-chevron-up","glyphicon-chevron-down","glyphicon-retweet","glyphicon-shopping-cart","glyphicon-folder-close","glyphicon-folder-open","glyphicon-resize-vertical","glyphicon-resize-horizontal","glyphicon-hdd","glyphicon-bullhorn","glyphicon-bell","glyphicon-certificate","glyphicon-thumbs-up","glyphicon-thumbs-down","glyphicon-hand-right","glyphicon-hand-left","glyphicon-hand-up","glyphicon-hand-down","glyphicon-circle-arrow-right","glyphicon-circle-arrow-left","glyphicon-circle-arrow-up","glyphicon-circle-arrow-down","glyphicon-globe","glyphicon-wrench","glyphicon-tasks","glyphicon-filter","glyphicon-briefcase","glyphicon-fullscreen","glyphicon-dashboard","glyphicon-paperclip","glyphicon-heart-empty","glyphicon-link","glyphicon-phone","glyphicon-pushpin","glyphicon-usd","glyphicon-gbp","glyphicon-sort","glyphicon-sort-by-alphabet","glyphicon-sort-by-alphabet-alt","glyphicon-sort-by-order","glyphicon-sort-by-order-alt","glyphicon-sort-by-attributes","glyphicon-sort-by-attributes-alt","glyphicon-unchecked","glyphicon-expand","glyphicon-collapse-down","glyphicon-collapse-up","glyphicon-log-in","glyphicon-flash","glyphicon-log-out","glyphicon-new-window","glyphicon-record","glyphicon-save","glyphicon-open","glyphicon-saved","glyphicon-import","glyphicon-export","glyphicon-send","glyphicon-floppy-disk","glyphicon-floppy-saved","glyphicon-floppy-remove","glyphicon-floppy-save","glyphicon-floppy-open","glyphicon-credit-card","glyphicon-transfer","glyphicon-cutlery","glyphicon-header","glyphicon-compressed","glyphicon-earphone","glyphicon-phone-alt","glyphicon-tower","glyphicon-stats","glyphicon-sd-video","glyphicon-hd-video","glyphicon-subtitles","glyphicon-sound-stereo","glyphicon-sound-dolby","glyphicon-sound-5-1","glyphicon-sound-6-1","glyphicon-sound-7-1","glyphicon-copyright-mark","glyphicon-registration-mark","glyphicon-cloud-download","glyphicon-cloud-upload","glyphicon-tree-conifer","glyphicon-tree-deciduous","glyphicon-cd","glyphicon-save-file","glyphicon-open-file","glyphicon-level-up","glyphicon-copy","glyphicon-paste","glyphicon-alert","glyphicon-equalizer","glyphicon-king","glyphicon-queen","glyphicon-pawn","glyphicon-bishop","glyphicon-knight","glyphicon-baby-formula","glyphicon-tent","glyphicon-blackboard","glyphicon-bed","glyphicon-apple","glyphicon-erase","glyphicon-hourglass","glyphicon-lamp","glyphicon-duplicate","glyphicon-piggy-bank","glyphicon-scissors","glyphicon-bitcoin","glyphicon-yen","glyphicon-ruble","glyphicon-scale","glyphicon-ice-lolly","glyphicon-ice-lolly-tasted","glyphicon-education","glyphicon-option-horizontal","glyphicon-option-vertical","glyphicon-menu-hamburger","glyphicon-modal-window","glyphicon-oil","glyphicon-grain","glyphicon-sunglasses","glyphicon-text-size","glyphicon-text-color","glyphicon-text-background","glyphicon-object-align-top","glyphicon-object-align-bottom","glyphicon-object-align-horizontal","glyphicon-object-align-left","glyphicon-object-align-vertical","glyphicon-object-align-right","glyphicon-triangle-right","glyphicon-triangle-left","glyphicon-triangle-bottom","glyphicon-triangle-top","glyphicon-console","glyphicon-superscript","glyphicon-subscript","glyphicon-menu-left","glyphicon-menu-right","glyphicon-menu-down","glyphicon-menu-up"]
+});
+angular.module("ButtonApp").directive("bsButton", [require("./buttonDirective")]);
+module.exports=buttonApp.name;
+},{"./buttonDirective":26}],26:[function(require,module,exports){
+module.exports=function() {
+	
+	return {
+		restrict: "E",
+		scope : {style: "@",glyphicon: "@",disabled: "@", active: "@"},
+		templateUrl: function(el,attrs){
+            return (angular.isDefined(attrs.glyphicon)) ? 'js/ex7-button-dir/app/templates/buttonGlyph.html' : 'js/ex7-button-dir/app/templates/button.html';
+        },
+		transclude: true,
+		replace:false,
+		link: function(scope, elm, attrs) {
+			attrs.$observe('disabled', function() {
+				scope.disabled = scope.$eval(attrs.disabled);
+			});
+			attrs.$observe('active', function() {
+				scope.active = scope.$eval(attrs.active);
+			});
+		}
+	};
+};
+},{}],27:[function(require,module,exports){
+module.exports=function() {
+	
+	return {
+		restrict: "E",
+		scope : {style: "@", closeButton: "@", onClose:"&"},
+		templateUrl: 'js/ex8-alert-dir/app/templates/alert.html',
+		transclude: true,
+		replace:false,
+		link: function(scope, elm, attrs,ctrl,transclude) {
+			attrs.$observe('closeButton', function() {
+				scope.closeButton = scope.$eval(attrs.closeButton);
+			});
+			elm.on("close.bs.alert",function(){
+				var result;
+				scope.$apply(function(){
+					if(angular.isDefined(scope.onClose)){
+						result= scope.onClose();
+					}
+				});
+				return result;
+			});
+		}
+	};
+};
+},{}],28:[function(require,module,exports){
+var app=angular.module("AlertApp", ['ngSanitize']);
+angular.module("AlertApp").controller("AlertController", ["$scope","alertConstants","$sce",function($scope,alertConstants,$sce) {
+	$scope.styles=alertConstants.styles;
+	$scope.style=$scope.styles[0];
+
+	$scope.content=$scope.style.v;
+	$scope.closeButton=true;
+	$scope.alerts=new Array();
+	$scope.count=1;
+	 $scope.trustedContent = function(content) {
+         return $sce.trustAsHtml(content);
+       };
+	$scope.create=function(){
+		for(var i=0;i<$scope.count;i++){
+			var alert={};
+			alert.style=$scope.style.k;
+			alert.content=$scope.trustedContent($scope.content);
+			alert.closeButton=$scope.closeButton;
+			$scope.alerts.push(alert);
+		}
+	};
+	$scope.close=function(){
+		if($scope.content.indexOf("Impossible de fermer l'alerte témoin")===-1){
+			$scope.content=$scope.content+"<br>Impossible de fermer l'alerte témoin !";
+		}
+		return false;
+	};
+
+	$scope.changeStyle=function(){
+		$scope.content=$scope.style.v;
+	};
+	$scope.closeAlert=function(alert){
+		var index = $scope.alerts.indexOf(alert);
+		$scope.alerts.splice(index, 1);
+	};
+}]);
+
+angular.module("AlertApp").constant('alertConstants', {
+	styles: [{k:'success',v:'<strong>Well done!</strong> You successfully read this important alert message.'},
+	         {k:'info',v:'<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.'},
+	         {k:'warning',v:'<strong>Warning!</strong> Better check yourself, you\'re not looking too good.'},
+	         {k:'danger',v:'<strong>Oh snap!</strong> Change a few things up and try submitting again.'}],
+});
+angular.module("AlertApp").directive("bsAlert", [require("./alertDirective.js")]);
+module.exports=app.name;
+},{"./alertDirective.js":27}],29:[function(require,module,exports){
+var app=angular.module("pbApp", []);
+angular.module("pbApp").controller("PbController", ["$scope","pbConstants","$interval","$timeout",function($scope,pbConstants,$interval,$timeout) {
+	$scope.value=0;
+	$scope.max=100;
+	$scope.min=0;
+	$scope.styles=pbConstants.styles;
+	$scope.style=$scope.styles[0];
+	$scope.striped=false;
+	$scope.active=false;
+	$scope.incTimer=null;
+	$scope.interval=100;
+	$scope.repeat=false;
+	$scope.showMessage=false;
+	
+	$scope.inc=function(){
+		if($scope.value<$scope.max){
+			$scope.value++;
+		}else{
+			if($scope.repeat===false){
+				$scope.stop();
+			}else{
+				$scope.stop();
+				$scope.value=0;
+				$timeout(function() {$scope.start();},500);
+			}
+		}
+	};
+	
+	$scope.start=function(){
+		$scope.incTimer=$interval($scope.inc,$scope.interval,0,true);
+	};
+	$scope.stop=function(){
+		$interval.cancel($scope.incTimer);
+		$scope.incTimer=null;
+	};
+	$scope.restart=function(){
+		if($scope.incTimer!==null){
+			$scope.stop();
+			$scope.start();
+		}
+	};
+	
+	$scope.onStart=function(){
+		$scope.showMessage=false;
+		$scope.message="Start";
+	};
+	
+	$scope.onProgress=function(){
+		$scope.showMessage=true;
+		$scope.message="En cours...";
+		$scope.progression=$scope.value/$scope.max*100;
+	};
+	
+	$scope.onTerminated=function(){
+		$scope.showMessage=true;
+		$scope.message="Terminé !";
+	};
+	
+	$scope.$on('$destroy', function() {
+		$scope.stop();
+	});
+}]);
+
+angular.module("pbApp").constant('pbConstants', {
+	styles: ['success','info','warning','danger'],
+});
+angular.module("pbApp").directive("bsProgressBar",require("./pbDirective"));
+module.exports=app.name;
+},{"./pbDirective":30}],30:[function(require,module,exports){
+module.exports= function() {
+	return {
+		restrict: "E",
+		require: 'ngModel',
+		scope : {min: "@",value: "=ngModel",max: "@",onProgress: "&",onTerminated: "&",onStart: "&",style: "@",striped: "@", active: "@"},
+		templateUrl: 'js/ex9-pb-dir/app/templates/progressbar.html',
+		transclude: false,
+		replace:true,
+		link: function(scope, elm, attrs,ngModel) {
+			attrs.$observe('striped', function() {
+				scope.striped = scope.$eval(attrs.striped);
+			});
+			attrs.$observe('ngModel', function(value){ // Got ng-model bind path here
+				scope.$watch(value,function(newValue){ // Watch given path for changes
+					if(angular.isDefined(scope.onProgress)){
+						scope.onProgress();
+					}
+					if(newValue==scope.max){
+						if(angular.isDefined(scope.onTerminated)){
+							scope.onTerminated();
+						}
+					}
+					if(newValue==scope.min){
+						if(angular.isDefined(scope.onStart)){
+							scope.onStart();
+						}
+					} 
+	              });
+			});
+			attrs.$observe('active', function() {
+				scope.active = scope.$eval(attrs.active);
+			});
+		}
+	};
+};
+},{}],31:[function(require,module,exports){
 var truncate= function () {
     return function (text, length, end) {
         if (isNaN(length))
@@ -861,7 +1100,7 @@ var truncate= function () {
     };
 };
 module.exports=truncate;
-},{}],26:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 var prismApp=angular.module("PrismApp", ['ngSanitize','ngRoute']).run(['$location', '$rootElement','$rootScope', function ($location, $rootElement,$rootScope) {
     //$rootElement.off('click');
 }]);
@@ -872,7 +1111,7 @@ angular.module("PrismApp").directive("tabHeader",require("./directives/tabHeader
 angular.module("PrismApp").directive("tabContent",require("./directives/tabContent"));
 angular.module('ng').service("download", ["$http","$window",require("./services/download")]);
 module.exports=prismApp;
-},{"./directives/prismTabs":27,"./directives/tabContent":28,"./directives/tabHeader":29,"./prismController":30,"./services/download":31}],27:[function(require,module,exports){
+},{"./directives/prismTabs":33,"./directives/tabContent":34,"./directives/tabHeader":35,"./prismController":36,"./services/download":37}],33:[function(require,module,exports){
 var tabs=function($http,$timeout,$sce) {
 	return {
 		restrict:"E",
@@ -920,7 +1159,7 @@ var tabs=function($http,$timeout,$sce) {
 	}
 };
 module.exports=tabs;
-},{}],28:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 var tabContent=function(){
 	return {
 		restrict:"E",
@@ -930,7 +1169,7 @@ var tabContent=function(){
 };
 
 module.exports=tabContent;
-},{}],29:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 var tabHeader=function(){
 	return {
 		restrict:"E",
@@ -939,9 +1178,9 @@ var tabHeader=function(){
 	}
 };
 module.exports=tabHeader;
-},{}],30:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 var prismController=function($scope,download,$rootScope,$location,$routeParams) {
-	$scope.tabs={"ex1":{"code":"ex1","title":"Exercice 1 : <b>Note<\/b>","description":"Double data-binding, utilisation des directives de base","href":"ex1","tabs":[{"id":"1","caption":"HTML","file":"ex1-note\/index.html","href":"tab1","download":"1","comment":"<br>\r\n<div class='alert alert-warning'>Attention, pour pouvoir fonctionner correctement, cette application doit intégrer les librairies suivantes :\r\n<ul>\r\n<li>Twitter bootstrap css<\/li>\r\n<li>angularJS main file<\/li>\r\n<\/ul>\r\n\r\n<\/div>","exercice":{},"values":[]},{"id":"2","caption":"Javascript","file":"ex1-note\/noteController.js","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"6","caption":"Css","file":"ex1-note\/css.css","href":"tab3","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex2":{"code":"ex2","title":"Exercice 2 : <b>Sélection de services<\/b>","description":"Créer un module et un contrôleur, \r\nUtiliser des directives Angular, \r\nMettre en oeuvre le Data-binding","href":"ex2","tabs":[{"id":"3","caption":"HTML","file":"ex2-services\/index.html","href":"tab1","download":"1","comment":"","exercice":{},"values":[]},{"id":"4","caption":"Javascript","file":"ex2-services\/servicesController.js","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"5","caption":"Css","file":"ex2-services\/css.css","href":"tab3","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex3":{"code":"ex3","title":"Exercice 3 : <b>Choix multiples<\/b>","description":"Créer un module et un contrôleur\r\nUtiliser des directives Angular\r\nMettre en oeuvre le Data-binding","href":"ex3","tabs":[{"id":"7","caption":"HTML","file":"ex3-choixMultiples\/index.html","href":"tab1","download":"1","comment":"","exercice":{},"values":[]},{"id":"8","caption":"Javascript","file":"ex3-choixMultiples\/choixMultiplesController.js","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"9","caption":"Css","file":"ex3-choixMultiples\/css.css","href":"tab3","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex4":{"code":"ex4","title":"Exercice 4 : <b>Gestion des contacts<\/b>","description":"Utiliser la directive <b>ngRepeat<\/b><br>\r\nUtiliser la validation des formulaires<br>\r\nCréer des directives simples","href":"ex4","tabs":[{"id":"10","caption":"HTML","file":"ex4-contacts\/contact.html","href":"tab1","download":"1","comment":"","exercice":{},"values":[]},{"id":"11","caption":"Template ContactElem","file":"ex4-contacts\/templates\/v_contact.html","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"12","caption":"Template frmContactElem","file":"ex4-contacts\/templates\/v_frmContact.html","href":"tab3","download":"1","comment":"","exercice":{},"values":[]},{"id":"13","caption":"Directives","file":"ex4-contacts\/app\/contactsDirectives.js","href":"tab4","download":"1","comment":"","exercice":{},"values":[]},{"id":"14","caption":"Filtres","file":"ex4-contacts\/app\/contactsFilters.js","href":"tab5","download":"1","comment":"","exercice":{},"values":[]},{"id":"15","caption":"Contrôleur","file":"ex4-contacts\/app\/contactsControllers.js","href":"tab6","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex5":{"code":"ex5","title":"Exercice 5 : <b>Convertisseur de devises<\/b>","description":"Utiliser des services Angular existants (<b>$http<\/b>)<br>Mettre en oeuvre l'injection de dépendance<br>Créer des directives","href":"ex5","tabs":[{"id":"16","caption":"HTML","file":"ex5-currency\/index.html","href":"tab1","download":"1","comment":"<br>\r\n<div class='alert alert-warning'>Attention, pour pouvoir fonctionner correctement, cette application doit intégrer les librairies suivantes :\r\n<ul>\r\n<li>Twitter bootstrap css file<\/li>\r\n<li>angularJS main file<\/li>\r\n<li>abgularJS cookie file (angular-cookies.js)<\/li>\r\n<\/ul>\r\n\r\n<b><u>Ressources :<\/u><\/b>\r\n<ul>\r\n<li><a href='ex5-currency\/img\/loader.gif' target='_self'>img\/loader.gif<\/a><\/li>\r\n<li><a href='ex5-currency\/app\/data\/currencymap.json' target='_blank'>app\/data\/currencymap.json<\/a><\/li>\r\n<\/ul>\r\n\r\n<\/div>","exercice":{},"values":[]},{"id":"17","caption":"Template","file":"ex5-currency\/templates\/v_histo.html","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"20","caption":"Directives","file":"ex5-currency\/app\/currencyDirectives.js","href":"tab3","download":"1","comment":"","exercice":{},"values":[]},{"id":"21","caption":"Contrôleur","file":"ex5-currency\/app\/currencyControllers.js","href":"tab4","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex6":{"code":"ex6","title":"Exercice 6 : <b>Calculatrice<\/b>","description":"Créer un service (moteur de la calculatrice)<br>Utiliser un service (Injection de dépendance)<br>Créer des directives","href":"ex6","tabs":[{"id":"22","caption":"HTML","file":"ex6-calc\/index.html","href":"tab1","download":"1","comment":"<br>\r\n<div class='alert alert-warning'>Attention, pour pouvoir fonctionner correctement, cette application doit intégrer les librairies suivantes :\r\n<ul>\r\n<li>Twitter bootstrap css file<\/li>\r\n<li>angularJS main file<\/li>\r\n<li>abgularJS cookie file (angular-cookies.js)<\/li>\r\n<\/ul>\r\n\r\n<\/div>","exercice":{},"values":[]},{"id":"23","caption":"CSS","file":"ex6-calc\/css\/calc.css","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"24","caption":"Service","file":"ex6-calc\/app\/calcService.js","href":"tab3","download":"1","comment":"","exercice":{},"values":[]},{"id":"25","caption":"Directive","file":"ex6-calc\/app\/calcDirectives.js","href":"tab4","download":"1","comment":"","exercice":{},"values":[]},{"id":"26","caption":"Contrôleur","file":"ex6-calc\/app\/calcControllers.js","href":"tab5","download":"1","comment":"","exercice":{},"values":[]}],"values":[]}};
+	$scope.tabs={"ex1":{"code":"ex1","title":"Exercice 1 : <b>Note<\/b>","description":"Double data-binding, utilisation des directives de base","href":"ex1","tabs":[{"id":"1","caption":"HTML","file":"ex1-note\/index.html","href":"tab1","download":"1","comment":"<br>\r\n<div class='alert alert-warning'>Attention, pour pouvoir fonctionner correctement, cette application doit intégrer les librairies suivantes :\r\n<ul>\r\n<li>Twitter bootstrap css<\/li>\r\n<li>angularJS main file<\/li>\r\n<\/ul>\r\n\r\n<\/div>","exercice":{},"values":[]},{"id":"2","caption":"Javascript","file":"ex1-note\/noteController.js","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"6","caption":"Css","file":"ex1-note\/css.css","href":"tab3","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex2":{"code":"ex2","title":"Exercice 2 : <b>Sélection de services<\/b>","description":"Créer un module et un contrôleur, \r\nUtiliser des directives Angular, \r\nMettre en oeuvre le Data-binding","href":"ex2","tabs":[{"id":"3","caption":"HTML","file":"ex2-services\/index.html","href":"tab1","download":"1","comment":"","exercice":{},"values":[]},{"id":"4","caption":"Javascript","file":"ex2-services\/servicesController.js","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"5","caption":"Css","file":"ex2-services\/css.css","href":"tab3","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex3":{"code":"ex3","title":"Exercice 3 : <b>Choix multiples<\/b>","description":"Créer un module et un contrôleur\r\nUtiliser des directives Angular\r\nMettre en oeuvre le Data-binding","href":"ex3","tabs":[{"id":"7","caption":"HTML","file":"ex3-choixMultiples\/index.html","href":"tab1","download":"1","comment":"","exercice":{},"values":[]},{"id":"8","caption":"Javascript","file":"ex3-choixMultiples\/choixMultiplesController.js","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"9","caption":"Css","file":"ex3-choixMultiples\/css.css","href":"tab3","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex4":{"code":"ex4","title":"Exercice 4 : <b>Gestion des contacts<\/b>","description":"Utiliser la directive <b>ngRepeat<\/b><br>\r\nUtiliser la validation des formulaires<br>\r\nCréer des directives simples","href":"ex4","tabs":[{"id":"10","caption":"HTML","file":"ex4-contacts\/contact.html","href":"tab1","download":"1","comment":"","exercice":{},"values":[]},{"id":"11","caption":"Template ContactElem","file":"ex4-contacts\/templates\/v_contact.html","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"12","caption":"Template frmContactElem","file":"ex4-contacts\/templates\/v_frmContact.html","href":"tab3","download":"1","comment":"","exercice":{},"values":[]},{"id":"13","caption":"Directives","file":"ex4-contacts\/app\/contactsDirectives.js","href":"tab4","download":"1","comment":"","exercice":{},"values":[]},{"id":"14","caption":"Filtres","file":"ex4-contacts\/app\/contactsFilters.js","href":"tab5","download":"1","comment":"","exercice":{},"values":[]},{"id":"15","caption":"Contrôleur","file":"ex4-contacts\/app\/contactsControllers.js","href":"tab6","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex5":{"code":"ex5","title":"Exercice 5 : <b>Convertisseur de devises<\/b>","description":"Utiliser des services Angular existants (<b>$http<\/b>)<br>Mettre en oeuvre l'injection de dépendance<br>Créer des directives","href":"ex5","tabs":[{"id":"16","caption":"HTML","file":"ex5-currency\/index.html","href":"tab1","download":"1","comment":"<br>\r\n<div class='alert alert-warning'>Attention, pour pouvoir fonctionner correctement, cette application doit intégrer les librairies suivantes :\r\n<ul>\r\n<li>Twitter bootstrap css file<\/li>\r\n<li>angularJS main file<\/li>\r\n<li>abgularJS cookie file (angular-cookies.js)<\/li>\r\n<\/ul>\r\n\r\n<b><u>Ressources :<\/u><\/b>\r\n<ul>\r\n<li><a href='ex5-currency\/img\/loader.gif' target='_self'>img\/loader.gif<\/a><\/li>\r\n<li><a href='ex5-currency\/app\/data\/currencymap.json' target='_blank'>app\/data\/currencymap.json<\/a><\/li>\r\n<\/ul>\r\n\r\n<\/div>","exercice":{},"values":[]},{"id":"17","caption":"Template","file":"ex5-currency\/templates\/v_histo.html","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"20","caption":"Directives","file":"ex5-currency\/app\/currencyDirectives.js","href":"tab3","download":"1","comment":"","exercice":{},"values":[]},{"id":"21","caption":"Contrôleur","file":"ex5-currency\/app\/currencyControllers.js","href":"tab4","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex6":{"code":"ex6","title":"Exercice 6 : <b>Calculatrice<\/b>","description":"Créer un service (moteur de la calculatrice)<br>Utiliser un service (Injection de dépendance)<br>Créer des directives","href":"ex6","tabs":[{"id":"22","caption":"HTML","file":"ex6-calc\/index.html","href":"tab1","download":"1","comment":"<br>\r\n<div class='alert alert-warning'>Attention, pour pouvoir fonctionner correctement, cette application doit intégrer les librairies suivantes :\r\n<ul>\r\n<li>Twitter bootstrap css file<\/li>\r\n<li>angularJS main file<\/li>\r\n<li>abgularJS cookie file (angular-cookies.js)<\/li>\r\n<\/ul>\r\n\r\n<\/div>","exercice":{},"values":[]},{"id":"23","caption":"CSS","file":"ex6-calc\/css\/calc.css","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"24","caption":"Service","file":"ex6-calc\/app\/calcService.js","href":"tab3","download":"1","comment":"","exercice":{},"values":[]},{"id":"25","caption":"Directive","file":"ex6-calc\/app\/calcDirectives.js","href":"tab4","download":"1","comment":"","exercice":{},"values":[]},{"id":"26","caption":"Contrôleur","file":"ex6-calc\/app\/calcControllers.js","href":"tab5","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex7":{"code":"ex7","title":"Exercice 7 : <b>Boostrap Button<\/b>","description":"<ul>\r\n<li>Créer une directive avec template (dans une fonction)<\/li>\r\n<li>Définir le scope d'une directive<\/li>\r\n<li>Utiliser la transclusion<\/li>\r\n<li>Implémenter la méthode link<\/li>\r\n<li>Utiliser $observe<\/li>\r\n<\/ul>","href":"ex7","tabs":[{"id":"27","caption":"Directive","file":"directives\/button\/app\/buttonDirective.js","href":"tab1","download":"1","comment":"","exercice":{},"values":[]},{"id":"28","caption":"Template Button","file":"directives\/button\/app\/templates\/button.html","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"29","caption":"Template ButtonGlyph","file":"directives\/button\/app\/templates\/buttonGlyph.html","href":"tab3","download":"1","comment":"","exercice":{},"values":[]},{"id":"30","caption":"Vue de test","file":"directives\/button\/index.html","href":"tab4","download":"1","comment":"","exercice":{},"values":[]},{"id":"31","caption":"Application de test","file":"directives\/button\/app\/app.js","href":"tab5","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex8":{"code":"ex8","title":"Exercice 8 : <b>Boostrap Alert<\/b>","description":"<ul>\r\n<li>Créer une directive avec template<\/li>\r\n<li>Définir le scope d'une directive<\/li>\r\n<li>Utiliser la méthode link<\/li>\r\n<li>Traiter des événements sur le DOM <b>(close.bs.alert)<\/b><\/li>\r\n<li>Passer des méthodes dans le scope<\/li>\r\n<\/ul>","href":"ex8","tabs":[{"id":"32","caption":"Directive","file":"directives\/alert\/app\/alertDirective.js","href":"tab1","download":"1","comment":"","exercice":{},"values":[]},{"id":"33","caption":"Directive template","file":"directives\/alert\/app\/templates\/alert.html","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"34","caption":"Vue de test","file":"directives\/alert\/index.html","href":"tab3","download":"1","comment":"","exercice":{},"values":[]},{"id":"35","caption":"Application de test","file":"directives\/alert\/app\/app.js","href":"tab4","download":"1","comment":"","exercice":{},"values":[]}],"values":[]},"ex9":{"code":"ex9","title":"Exercice 9 : <b>Boostrap Progressbar<\/b>","description":"<ul>\r\n<li>Créer une directive avec template<\/li>\r\n<li>Définir le scope d'une directive<\/li>\r\n<li>Utiliser la méthode <b>link<\/b><\/li>\r\n<li>Observer les modifications sur <b>ngModel<\/b><\/li>\r\n<\/ul>","href":"ex9","tabs":[{"id":"36","caption":"Directive","file":"directives\/pb\/app\/pbDirective.js","href":"tab1","download":"1","comment":"","exercice":{},"values":[]},{"id":"37","caption":"Template","file":"directives\/pb\/app\/templates\/progressbar.html","href":"tab2","download":"1","comment":"","exercice":{},"values":[]},{"id":"38","caption":"Vue de test","file":"directives\/pb\/index.html","href":"tab3","download":"1","comment":"","exercice":{},"values":[]},{"id":"39","caption":"Application de test","file":"directives\/pb\/app\/app.js","href":"tab4","download":"1","comment":"","exercice":{},"values":[]}],"values":[]}};
 	$scope.activeTabs=$scope.tabs[$routeParams.ex];
 	
 	$scope.downloadAll=function(tabs,ex){
@@ -961,7 +1200,7 @@ var prismController=function($scope,download,$rootScope,$location,$routeParams) 
 	}
 };
 module.exports=prismController;
-},{}],31:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 var download=function($http,$window) {
 	var saveBlob=function(filename,data,contentType,octetStreamMime){
 		var success=false;
@@ -1066,7 +1305,7 @@ var download=function($http,$window) {
 	};
 };
 module.exports=download;
-},{}],32:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 var routes=function($routeProvider,$locationProvider) {
 	       $routeProvider.
 	           when('/ex1', {
@@ -1087,10 +1326,19 @@ var routes=function($routeProvider,$locationProvider) {
 	   }).when('/ex6', {
 	   templateUrl: 'js/ex6-calc/index.html',
 	   controller: 'calcController'
-	   }).when('/home', {
-	   templateUrl: 'templates/home.html',
-	   controller: 'RouteController'
-	   }).when('/run/:ex', {
+	   }).when('/ex7', {
+	   templateUrl: 'js/ex7-button-dir/index.html',
+	   controller: 'ButtonController'
+	   }).when('/ex8', {
+		templateUrl: 'js/ex8-alert-dir/index.html',
+		controller: 'AlertController'
+		}).when('/ex9', {
+		templateUrl: 'js/ex9-pb-dir/index.html',
+		controller: 'PbController'
+		}).when('/home', {
+		templateUrl: 'templates/home.html',
+		controller: 'RouteController'
+		}).when('/run/:ex', {
 	   templateUrl: 'templates/prism.html',
 	   controller: 'PrismController'
 	   }).otherwise({

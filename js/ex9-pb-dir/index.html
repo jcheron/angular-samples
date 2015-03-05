@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="js/ex9-pb-dir/css/css.css">
+<div class="container">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Ex 3 : ProgressBar
+		</div>
+		<div class="panel-body">
+			<form class="form-inline">
+				<div class="form-group">
+					<label class="sr-only" for="value">Valeur</label>
+					<div class="input-group">
+						<div class="input-group-addon">Valeur</div>
+						<input type="number" class="form-control" id="value" placeholder="Entrez une valeur" ng-model="value">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="max">Max</label>
+					<div class="input-group">
+						<div class="input-group-addon">Max</div>
+						<input type="number" class="form-control" id="max" placeholder="Entrez une valeur" ng-model="max">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="style">Style</label>
+					<div class="input-group">
+						<div class="input-group-addon">Style</div>
+						<select data-ng-model="style" id="style" data-ng-options="v for v in styles" class="form-control"></select>
+					</div>
+				</div>
+				<div class="form-control">
+					<label><input class="checkbox" type="checkbox" data-ng-model="striped"/>Striped</label>
+					<label><input class="checkbox" type="checkbox" data-ng-model="active"/>Active</label>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon">
+						<input type="checkbox" aria-label="repeat" data-ng-model="repeat">
+					</span>
+					<input type="number" class="form-control" style="width:100px" placeholder="Interval..." data-ng-model="interval" data-ng-change="restart()">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-success" data-ng-show="incTimer===null" data-ng-click="start()">
+							<span class="glyphicon glyphicon-play" aria-hidden="true"></span> Run
+						</button>
+						<button type="button" class="btn btn-danger" data-ng-hide="incTimer===null" data-ng-click="stop()">
+							<span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Stop
+						</button>
+					</span>
+				</div>
+			</form>
+			<br>
+			<bs-progress-bar data-ng-model="value" max="{{max}}" min="{{min}}" style="{{style}}" striped="{{striped}}" active="{{active}}" 
+			on-terminated="onTerminated()" on-progress="onProgress()" on-start="onStart()">
+			</bs-progress-bar>
+			<br>
+			<div class="alert alert-info" role="alert" data-ng-show="showMessage">{{message}}<br>Avancement : <b>{{progression|number:2}}%</b></div>
+		</div>
+	</div>
+</div>

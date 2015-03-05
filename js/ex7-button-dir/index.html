@@ -1,0 +1,62 @@
+<div class="container">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Ex 1 : Button
+		</div>
+		<div class="panel-body">
+			<form class="form-inline">
+				<div class="form-group">
+					<label class="sr-only" for="value">Valeur</label>
+					<div class="input-group">
+						<div class="input-group-addon">Valeur</div>
+						<input type="text" class="form-control" id="value" placeholder="Entrez une valeur" ng-model="value">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="style">Style</label>
+					<div class="input-group">
+						<div class="input-group-addon">Style</div>
+						<select data-ng-model="style" id="style" data-ng-options="v for v in styles" class="form-control"></select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="glyph">Glyph</label>
+					<div class="input-group">
+						<div class="input-group-addon">Glyph</div>
+						<select style="width:150px" data-ng-model="glyph" id="glyph" data-ng-options="v for v in glyphs" class="form-control"></select>
+					</div>
+				</div>
+				<div class="form-control">
+					<label style="font-weight: normal;"><input class="checkbox" type="checkbox" data-ng-model="active"/> Active</label>
+					<label style="font-weight: normal;"><input class="checkbox" type="checkbox" data-ng-model="disabled"/> Disabled</label>
+				</div>
+				<div class="input-group">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-primary" data-ng-click="create()">
+							<span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Créer
+						</button>
+					</span>
+					<input type="number" class="form-control" style="width:50px" placeholder="Nombre..." data-ng-model="count" id="count">
+					<div class="input-group-addon">bouton(s)</div>
+				</div>
+			</form>
+			<br>
+			<div class="panel panel-default">
+				<div class="panel-body">
+						<label>Bouton témoin :&nbsp;</label><bs-button style="{{style}}" glyphicon="{{glyph}}" data-active="{{active}}" data-disabled="{{disabled}}">{{value}}</bs-button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Collection de boutons</div>
+				<div class="panel-body">
+					<bs-button ng-repeat="button in buttons" style="{{button.style}}" glyphicon="{{button.glyph}}" active="{{button.active}}" disabled="{{button.disabled}}">{{button.value}}</bs-button>
+				</div>
+				<div class="panel-footer">
+					<ng-pluralize count="buttons.length" when="{	0 : 'Aucun élément',
+																1 : '1 élément',
+																'other' : '{} éléments'}">
+					</ng-pluralize>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

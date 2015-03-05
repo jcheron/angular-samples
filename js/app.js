@@ -4,9 +4,18 @@ require("./ex4-contacts/app/app");
 require("./ex5-currency/app/app");
 require("./ex6-calc/app");
 require("./prismApp/app");
-
 require("./prismApp/app");
-angular.module("mainApp", ["ngAnimate","ngRoute",require("./ex1-note/app"),"ServicesApp","ListesApp","ContactApp","currencyApp","calcApp","PrismApp"])
+angular.module("mainApp", ["ngAnimate","ngRoute",
+                           require("./ex1-note/app"),
+                           "ServicesApp",
+                           "ListesApp",
+                           "ContactApp",
+                           "currencyApp",
+                           "calcApp",
+                           "PrismApp",
+                           require("./ex7-button-dir/app/app"),
+                           require("./ex8-alert-dir/app/app"),
+                           require("./ex9-pb-dir/app/app")])
 .factory("run", function() {
 	var value;
     var valueService = {};

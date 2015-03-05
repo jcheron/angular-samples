@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "none"
+    "watchify": "watchify js/app.js -o js/bundle.js"
   },
   "browser": {
     "angular-latest": "./vendors/angular.browserify.js"

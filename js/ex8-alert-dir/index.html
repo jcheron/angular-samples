@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="js/ex8-alert-dir/css/css.css">
+<div class="container">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Ex 2 : Alert
+		</div>
+		<div class="panel-body">
+			<form class="form-inline">
+				<div class="form-group">
+					<label class="sr-only" for="value">Contenu</label>
+					<div class="input-group">
+						<div class="input-group-addon">Contenu</div>
+						<textarea class="form-control" id="content" placeholder="Entrez une valeur" ng-model="content"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="style">Style</label>
+					<div class="input-group">
+						<div class="input-group-addon">Style</div>
+						<select data-ng-model="style" id="style" data-ng-options="v.k for (k,v) in styles" class="form-control" data-ng-change="changeStyle()"></select>
+					</div>
+				</div>
+				<div class="form-control">
+					<label id="closeLabel"><input class="checkbox" type="checkbox" data-ng-model="closeButton"/> Close button ?</label>
+				</div>
+				<div class="input-group">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-primary" data-ng-click="create()">
+							<span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Créer
+						</button>
+					</span>
+					<input type="number" class="form-control" style="width:50px" placeholder="Nombre..." data-ng-model="count" id="count">
+					<div class="input-group-addon">Alert(s)</div>
+				</div>
+			</form>
+			<br>
+			<div class="panel panel-default">
+				<div class="panel-body">
+						<label>Alerte témoin :&nbsp;</label><bs-alert style="{{style.k}}" close-button="{{closeButton}}" on-close="close()"><span ng-bind-html="trustedContent(content)"></span></bs-alert>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Collection d'alertes</div>
+				<div class="panel-body">
+					<bs-alert ng-repeat="alert in alerts" style="{{alert.style}}" close-button="{{alert.closeButton}}" on-close="closeAlert(alert)"><span ng-bind-html="alert.content"></span></bs-alert>
+				</div>
+				<div class="panel-footer">
+					<ng-pluralize count="alerts.length" when="{	0 : 'Aucun élément',
+																1 : '1 élément',
+																'other' : '{} éléments'}">
+					</ng-pluralize>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

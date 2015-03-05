@@ -18,10 +18,19 @@ var routes=function($routeProvider,$locationProvider) {
 	   }).when('/ex6', {
 	   templateUrl: 'js/ex6-calc/index.html',
 	   controller: 'calcController'
-	   }).when('/home', {
-	   templateUrl: 'templates/home.html',
-	   controller: 'RouteController'
-	   }).when('/run/:ex', {
+	   }).when('/ex7', {
+	   templateUrl: 'js/ex7-button-dir/index.html',
+	   controller: 'ButtonController'
+	   }).when('/ex8', {
+		templateUrl: 'js/ex8-alert-dir/index.html',
+		controller: 'AlertController'
+		}).when('/ex9', {
+		templateUrl: 'js/ex9-pb-dir/index.html',
+		controller: 'PbController'
+		}).when('/home', {
+		templateUrl: 'templates/home.html',
+		controller: 'RouteController'
+		}).when('/run/:ex', {
 	   templateUrl: 'templates/prism.html',
 	   controller: 'PrismController'
 	   }).otherwise({
